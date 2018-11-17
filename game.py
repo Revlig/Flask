@@ -1,6 +1,7 @@
 """My Flask game."""
 from flask import Flask
 from flask import render_template
+from flask import url_for
 
 app = Flask(__name__)
 
@@ -23,12 +24,17 @@ posts = [
 @app.route("/")  # '/' root is home too
 @app.route("/home")
 def hello():
-    return render_template('home.html', posts=posts)
+    return render_template('home.html', posts=posts, title='Welcome!')
 
 
 @app.route("/login")
 def login():
     return render_template('login.html', title='Sign Area')
+
+
+@app.route("/register")
+def register():
+    return render_template('register.html', title='Register Area')
 
 
 @app.route("/about")
