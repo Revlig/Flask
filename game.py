@@ -2,8 +2,10 @@
 from flask import Flask
 from flask import render_template
 from flask import url_for
-
+from forms import RegistrationForm, LoginForm
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = '54302bff9659cab14d82a6efa2a7ddfa'
 
 posts = [
     {
@@ -29,12 +31,14 @@ def hello():
 
 @app.route("/login")
 def login():
-    return render_template('login.html', title='Sign Area')
+    form = LoginForm()
+    return render_template('login.html', title='Sign Area', form=form)
 
 
 @app.route("/register")
 def register():
-    return render_template('register.html', title='Register Area')
+    form = RegistrationForm()
+    return render_template('register.html', title='Register Area', form=form)
 
 
 @app.route("/about")
